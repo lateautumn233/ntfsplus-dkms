@@ -124,6 +124,7 @@ source=(
   '0005-ntfsplus-compress.c-using-page-index-instead-of-page.patch'
   '0006-ntfsplus-Update-iomap_zero_range-iomap_page_mkwrite-.patch'
   '0007-ntfsplus-Backport-ntfs_mkdir-for-kernels-older-than-.patch'
+  '0008-fs-ntfsplus-ntfs_check_bad_char-is-only-checked-when.patch'
   '0099-fs-ntfsplus-Makefile-DKMS-patch.patch'
   'dkms.conf'
   '90-udev-prefer-ntfsplus.rules'
@@ -140,6 +141,7 @@ sha256sums=(
   e217fa145f507b1e07e228e746528554f705f44fd5744f293b302b29df764b96
   99e3d34a646c13fd207b3d88265fb3fc2b7a0b88fd3461f0dc75669e7260ffc4
   e3866cac3d71da15740159c89b233d4d1f61981dbf737d4e3bc9a4c56bfa24be
+  1ab9eca3988b63ce2d9df7c9c887e039f8a644c746638faf9dbd46a34f8f0cc2
 )
 
 _upstream_last_commit_date=

@@ -1,0 +1,31 @@
+From d6ad56267c9d169b626b139ba6880d0a69c74981 Mon Sep 17 00:00:00 2001
+From: =?UTF-8?q?=E7=A7=8B=E7=A7=8B?= <lateautumn233@foxmail.com>
+Date: Thu, 11 Dec 2025 17:42:22 +0800
+Subject: [PATCH] fs/ntfsplus: ntfs_check_bad_char is only checked when using
+ windows_names.
+
+Moved the bad character check to occur after the volume name check to improve logical flow.
+---
+ fs/ntfsplus/namei.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/fs/ntfsplus/namei.c b/fs/ntfsplus/namei.c
+index 911f9139c3a2..6a1305b727d8 100644
+--- a/fs/ntfsplus/namei.c
++++ b/fs/ntfsplus/namei.c
+@@ -60,12 +60,12 @@ static int ntfs_check_bad_windows_name(struct ntfs_volume *vol,
+ 				       const unsigned short *wc,
+ 				       unsigned int wc_len)
+ {
+-	if (ntfs_check_bad_char(wc, wc_len))
+-		return -EINVAL;
+-
+ 	if (!NVolCheckWindowsNames(vol))
+ 		return 0;
+ 
++	if (ntfs_check_bad_char(wc, wc_len))
++		return -EINVAL;
++
+ 	/* Check for trailing space or dot. */
+ 	if (wc_len > 0 &&
+ 	    (wc[wc_len - 1] == cpu_to_le16(' ') ||
